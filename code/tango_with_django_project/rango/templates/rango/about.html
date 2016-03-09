@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("p").click(function(){
+        $(this).hide();
+    });
+    $("button").click(function(){
+        $("p").hide();
+    });
+    $("#about-btn").click( function(event) {
+        alert("You clicked the button using JQuery!");
+    });
+    $('#likes').click(function(){
+    var catid;
+    catid = $(this).attr("data-catid");
+    $.get('/rango/like_category/', {category_id: catid}, function(data){
+               $('#like_count').html(data);
+               $('#likes').hide();
+    });
+});
+
+});
+});
+</script>
+</head>
+<body>
+<p>If you click on me, I will disappear.</p>
+<p>Click me away!</p>
+<p>Click me too!</p>
+<button>Click me</button><br/>
+<button onClick="alert('You clicked the button using Javascript.');">
+Click Me - I run Javascript
+</button><br/>
+<button id="about-btn"> Click Me - I'm Javascript on Speed</button><br/>
+<p>
+
+<strong id="like_count">{{ category.likes }}</strong> people like this category
+
+
+        <button id="likes" data-catid="{{category.id}}" class="btn btn-primary" type="button">
+        <span class="glyphicon glyphicon-thumbs-up"></span>
+        Like
+        </button>
+
+
+</p>
+</body>
+</html>
+
+  

@@ -1,0 +1,11 @@
+ <h1> Rango says...hello word!</h1>
+  {% if categories %}
+    <ul>
+      {% for category in categories %}
+        <li><a href="{% url '' category.slug %}">{{ category }}</a></li>
+      {% endfor %}
+    </ul>
+
+  {% else %}
+      <strong>There are no categories present</strong>
+  {% endif %}

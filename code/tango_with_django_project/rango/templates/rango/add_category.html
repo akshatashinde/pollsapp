@@ -1,0 +1,24 @@
+{% extends "rango/base.html" %}
+{% load staticfiles %}
+{% block content %}
+<body style="background-color:Orange;">
+<div>
+<h1 style="color:Blue;">Add a Category</h1>
+<br/>
+<form id="category_form" method="post" action="/rango/add_category/">
+	{% csrf_token %}
+	{% for hidden in form.hidden_field %}
+		{{hidden}}
+	{% endfor %}
+
+	{% for field in form.visible_fields %}
+		{{ field.errors }}
+        {{ field.help_text }}
+        {{ field }}
+    {% endfor %}
+    <br/>
+    <br/><input type="submit" name="submit" value="Create Category" style="color:red;"/>
+</form>
+</div>
+</body>
+{% endblock content %}
