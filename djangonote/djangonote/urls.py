@@ -15,13 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from notes import views
+# from notes import views
+
 
 urlpatterns = [
     url(r'^admin/',include(admin.site.urls)),
-    url(r'^$',views.index, name='index'),
-    url(r'^home/$',views.home_view,name='home'),
-    url(r'^add/index/$',views.index_view,name='index_view'),
-    url(r'^addnote/$',views.add_note,name='add_note'),
+    # url(r'^notes/',include('notes.urls')),
+    url(r'^notes/', include('notes.urls', namespace='notes')),
+    # url(r'^$',views.index, name='index'),
+    # url(r'^$',views.home_view,name='home'),
+    # url(r'^addindex/$',views.index_view,name='index_view'),
+    # url(r'^addnote/$',views.add_note,name='add_note'),
+    # url(r'^addtag/$',views.add_tag,name='add_tag'),
+    # url(r'^tags/(?P<slug>[-\w]+)/$',views.tag_search, name='tagsearch'),
 
 ]
